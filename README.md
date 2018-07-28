@@ -1,6 +1,10 @@
 Grokking PyTorch
 ================
 
+_I use PyTorch a lot for research and fun. Thanks to @Kaixhin for these notes. PyTorch needs something along the same lines as ["Thinking in React"](https://reactjs.org/docs/thinking-in-react.html)._
+
+---
+
 [PyTorch](https://pytorch.org/) is a flexible deep learning framework that allows automatic differentiation through dynamic neural networks (i.e., networks that utilise dynamic control flow like if statements and while loops). It supports GPU acceleration, [distributed training](https://pytorch.org/docs/stable/distributed.html), [various optimisations](https://pytorch.org/2018/05/02/road-to-1.0.html), and plenty more neat features. These are some notes on how I think about using PyTorch, and don't encompass all parts of the library or every best practice, but may be helpful to others.
 
 Neural networks are a subclass of *computation graphs*. Computation graphs receive input data, and data is routed to and possibly transformed by nodes which perform processing on the data. In deep learning, the neurons (nodes) in neural networks typically transform data with parameters and differentiable functions, such that the parameters can be optimised to minimise a loss via gradient descent. More broadly, the functions can be stochastic, and the structure of the graph can be dynamic. So while neural networks may be a good fit for [dataflow programming](https://en.wikipedia.org/wiki/Dataflow_programming), PyTorch's API has instead centred around [imperative programming](https://en.wikipedia.org/wiki/Imperative_programming), which is a more common way for thinking about programs. This makes it easier to read code and reason about complex programs, without necessarily sacrificing much performance; PyTorch is actually pretty fast, with plenty of optimisations that you can safely forget about as an end user (but you can dig in if you really want to).
